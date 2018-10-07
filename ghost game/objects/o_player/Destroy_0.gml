@@ -1,0 +1,11 @@
+instance_create_layer(x,y,layer,do_ragdoll_torso);
+instance_create_layer(x,y-height/2,layer,do_ragdoll_head);
+var limb;
+limb = instance_create_layer(x-8,y,layer,do_ragdoll_limb);
+limb.limb_index = 0;
+limb = instance_create_layer(x,y+8,layer,do_ragdoll_limb);
+limb.limb_index = 1;
+limb = instance_create_layer(x+8,y,layer,do_ragdoll_limb);
+limb.limb_index = 2;
+limb = instance_create_layer(x,y+8,layer,do_ragdoll_limb);
+limb.limb_index = 3;

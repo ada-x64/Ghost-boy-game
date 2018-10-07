@@ -1,0 +1,99 @@
+Pages are marked with "\n"
+Finished things are marked with "(F)"
+[My comments are indicated with square brackets]
+Entries get older as you scroll down.
+
+"notes-4-15.txt"
+
+Changes
+
+-	[[[Maybe the upper edge of the boxes should act as platforms the player can stand on, and fall through, like your standard smash bros platforms. That was you can make a stack of boxes the player can jump up and through]]]
+
+That thing we talked about, yeah.
+
+New Additions
+
+-	Debug Toggle, for all debug info
+
+-	Object Groups/Parents, Activators and Activa...tees? There should be a parent for each of these, one being a group of activators, or triggers that are to be interacted with by the player (buttons, pressure plates, levers, etc), the other group being the objects affected by the triggers. (Doors, moving platforms, etc)
+
+The purpose of the parents objects is to allow the activatees to watch the activators, and when they're activated, they'll do the thing. In the room editor, each instance of an activator/activatee will need to be labelled with an ID that pairs them. This way each pair will work together, and doors, platforms, levers, buttons etc will all be in sync. This will also allow multiple doors to be controlled by one lever, and multiple levers to activate/deactivate one door.
+		
+Bugs
+
+-	Dragging the destructable barrel into the player kills them. I assume the killing speed is being reached while the ghost is controlling it. This will likely be fixed indirectly by the platforming changes, but
+
+****************************************************************
+
+Some things I want to do 4-9-2018
+live tweak tool
+destructible objects
+
+transcript 3-28-18
+
+Wall jump (F)
+Drops (F)
+Grapple (F)
+
+Some notes: Wall Jumping should have a specific trajectory each time, so that it's predictable. A solid jump at a 45 [...]
+degree angle should work, right now it feels like it might be based on your momentum when hitting the wall.
+	[The wall jump simply adds an impulse to the player object, which i suppose /does/ depend on the current momentum.]
+If the ghost gets too far away from a carried object, it should tremble wildly, and if it continues to tremble for say, two full seconds, the item is released. that way you cant run out of bounds as a ghost with the items stuck in the geometry, but it will still give you some warning.
+I'd also like the player to be able to push and pull the big objects around, slowly. It'd be cute to see him walk up to the block, extend his little arms out to "grab" the block, then shimmy back and forth with it
+
+****************************************************************
+
+transcript 3-19-18
+First Pass Functions
+
+Player
+-walk/run (F)
+-jump (F)
+-wall jump (F)
+-crouch
+
+Ghost
+-fly (F)
+-grab/hold (F)
+-return (F)
+-possess
+
+Other!
+
+[What follows is an explanation of each of the above points.]
+\n
+Walking/Running
+Currently, walking involves the player gradually gaining speed. I like this, but the speed increase should feel instant to the player, to improve the feeling of response.
+Once this walkspeed is set, continuous movement in the same direction should increase towards a maximum speed.
+
+\n
+Jumping
+Like with walking, jumping should feel instant and responsive. While in the air, all horizontal speed may be changed sightly, slowing or speeding up, but it should be /very/ difficult to reverse speeds/direction
+
+\n
+Wall Jump
+Not much to say. Jumping while sliding down a wall should apply instant force to the player
+45 deg to the wall.
+
+\n
+Crouch
+Uhh... Press Down to make crouch. Crouch make player small.
+Crouch small slow moving.
+
+\n
+Flying
+Flying should be handled with momentum. It will be tuned to be fast enough for accuracy, and floaty enough to keep the ghosty-vibes.
+The ghost should act as a cursor, appearing on the top layer, with nothing impeding movement. (For Now)
+
+\n
+Grab/Hold
+When passing in front of objects that can be interacted with, holding the Grab Button will cause them to "cling" to the ghost, allowing the player to drag it around. The object should pivot around the origin of the ghost.
+
+\n
+Return
+Pressing the return button makes the ghost target the player, and move quickly towards them. This can be used with grab/Hold, to pull collectables toward the player. Doing so with a big brick may result in death.
+
+\n
+Possess
+Similar to Grab/Hold, this allows the ghost to manipulate only specific objects. This makes those objects take the ghost's place, and the ability to be flown through walls.
+
